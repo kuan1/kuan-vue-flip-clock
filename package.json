@@ -1,0 +1,40 @@
+{
+  "name": "kuan-vue-flip-clock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/kuan-vue-flip-clock.min.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=production node build/dev",
+    "build:gh": "cross-env NODE_ENV=production node build/build",
+    "build:lib": "cross-env NODE_ENV=production node build/buildLib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuan1/kuan-vue-flip-clock.git"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "vue",
+    "flip-clock",
+    "clock",
+    "kuan"
+  ],
+  "author": "luzhongk@126.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuan1/kuan-vue-flip-clock/issues"
+  },
+  "homepage": "https://github.com/kuan1/kuan-vue-flip-clock#readme",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "kuan-css": "^1.0.5",
+    "kuan-pack": "^2.1.3",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0"
+  },
+  "dependencies": {}
+}
