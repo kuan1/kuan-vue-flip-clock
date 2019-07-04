@@ -18,38 +18,9 @@ ul {
   *zoom: 1;
 }
 
-/* Main */
-
-.container {
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 140px;
-  height: 90px;
-  margin: -45px 0 0 -70px;
-}
-
-#social {
-  text-align: center;
-  position: absolute;
-  bottom: 14%;
-  width: 100%;
-}
-#social p {
-  margin-bottom: 10px;
-}
-
-#social ul,
-#social li {
-  display: inline-block;
-}
-
 /* Skeleton */
-
 ul.flip {
   position: relative;
-  float: left;
   margin: 5px;
   width: 60px;
   height: 90px;
