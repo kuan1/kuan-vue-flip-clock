@@ -1,15 +1,18 @@
 <template>
   <div>
-    翻页时钟
+    <flip-item/>
   </div>
 </template>
 
 <script>
-export default {
+import FlipItem from './FlipItem.vue'
 
+export default {
+  components: {
+    FlipItem
+  }
 }
 </script>
 
 <style>
-
 </style>
