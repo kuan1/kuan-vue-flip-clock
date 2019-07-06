@@ -4,7 +4,7 @@
       <li
         class="item"
         v-for="(item, key) in total + 1"
-        :class="{active: current === key, before: (key === current - 1)}"
+        :class="{active: current === key, before: key === before}"
         :key="item"
       >
         <div class="up">
@@ -24,51 +24,43 @@ export default {
     total: {
       type: Number,
       default: 9
+    },
+    current: {
+      type: Number,
+      default: -1
     }
   },
   data() {
     return {
-      current: 0,
-      isPlay: false
+      before: -1,
+      isPlay: true
     }
   },
-  mounted() {
-    this.startTimer()
-  },
-  beforeDestroy() {
-    this.stopTimer()
-  },
-  methods: {
-    startTimer() {
-      this.timer = setTimeout(() => {
-        this.stopTimer()
-        this.isPlay = false
-        this.$nextTick(() => {
-          const { current, total } = this
-          this.isPlay = true
-          this.current = current > total - 1 ? 0 : current + 1
-          this.startTimer()
-        })
-      }, 1000)
-    },
-    stopTimer() {
-      clearTimeout(this.timer)
+  watch: {
+    current(current, preCurrent) {
+      this.before = preCurrent
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$width: 60px;
+$height: 90px;
+$fontSize: 80px;
+$lineWidth: 3px;
+$radius: 6px;
+
 .flip {
   position: relative;
   margin: 5px;
-  width: 60px;
-  height: 90px;
-  font-size: 80px;
+  width: $width;
+  height: $height;
+  font-size: $fontSize;
   font-weight: bold;
-  line-height: 86px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  line-height: $height - $lineWidth;
+  border-radius: $radius;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
   .item {
     z-index: 1;
     position: absolute;
@@ -77,6 +69,7 @@ export default {
     width: 100%;
     height: 100%;
     perspective: 200px;
+    transition: opacity 0.3s;
     &:first-child {
       z-index: 2;
     }
@@ -95,17 +88,18 @@ export default {
       &:after {
         content: '';
         position: absolute;
-        top: 44px;
+        top: ($height - $lineWidth) / 2;
         left: 0;
         z-index: 5;
         width: 100%;
-        height: 4px;
+        height: $lineWidth;
         background-color: rgba(0, 0, 0, 0.4);
       }
     }
     .down {
       transform-origin: 50% 0%;
       bottom: 0;
+      transition: opacity 0.3s;
     }
     .inn {
       position: absolute;
@@ -117,7 +111,7 @@ export default {
       text-shadow: 0 1px 2px #000;
       text-align: center;
       background-color: #333;
-      border-radius: 6px;
+      border-radius: $radius;
     }
     .up .inn {
       top: 0;
@@ -127,8 +121,6 @@ export default {
     }
   }
 }
-
-/* PLAY */
 .play {
   .item {
     &.before {
@@ -138,30 +130,18 @@ export default {
       animation: asd 0.5s 0.5s linear both;
       z-index: 2;
     }
-    &.active .down {
-      z-index: 2;
-      animation: turn 0.5s 0.5s linear both;
-    }
     &.before .up {
       z-index: 2;
-      animation: turn2 0.5s linear both;
+      animation: turn-up 0.5s linear both;
+    }
+    &.active .down {
+      z-index: 2;
+      animation: turn-down 0.5s 0.5s linear both;
     }
   }
 }
 
-@keyframes asd {
-  0% {
-    z-index: 2;
-  }
-  5% {
-    z-index: 4;
-  }
-  100% {
-    z-index: 4;
-  }
-}
-
-@keyframes turn {
+@keyframes turn-down {
   0% {
     transform: rotateX(90deg);
   }
@@ -170,7 +150,7 @@ export default {
   }
 }
 
-@keyframes turn2 {
+@keyframes turn-up {
   0% {
     transform: rotateX(0deg);
   }
@@ -188,44 +168,6 @@ export default {
   }
   100% {
     z-index: 4;
-  }
-}
-
-@keyframes turn {
-  0% {
-    transform: rotateX(90deg);
-  }
-  100% {
-    transform: rotateX(0deg);
-  }
-}
-
-@keyframes turn2 {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(-90deg);
-  }
-}
-
-/*DOWN*/
-
-@keyframes show-clock {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes hide-clock {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 </style>
