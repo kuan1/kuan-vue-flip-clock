@@ -15,8 +15,6 @@
 import FlipItem from './FlipItem.vue'
 import { getTimeArr } from './utils'
 
-console.log(getTimeArr())
-
 export default {
   components: {
     FlipItem
@@ -37,7 +35,6 @@ export default {
       this.timer = setTimeout(() => {
         this.stopTimer()
         this.timeArr = getTimeArr()
-        console.log(this.timeArr)
         this.startTimer()
       }, 1000)
     },
