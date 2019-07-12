@@ -32,8 +32,8 @@ export default {
   },
   methods: {
     startTimer() {
+      this.stopTimer()
       this.timer = setTimeout(() => {
-        this.stopTimer()
         this.timeArr = getTimeArr()
         this.startTimer()
       }, 1000)
