@@ -67,6 +67,7 @@ $radius: 6px;
   border-radius: $radius;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
   .item {
+    list-style: none;
     z-index: 1;
     position: absolute;
     left: 0;
