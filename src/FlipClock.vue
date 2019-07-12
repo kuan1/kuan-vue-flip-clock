@@ -1,16 +1,21 @@
 <template>
   <div class="clock-container">
-    <flip-item :total="total" :current="current"/>
-    <flip-item :total="total" :current="current"/>
-    <flip-item :total="total" :current="current"/>
-    <flip-item :total="total" :current="current"/>
-    <flip-item :total="total" :current="current"/>
+    <flip-item :total="2" :current="timeArr[0]"/>
+    <flip-item :total="9" :current="timeArr[1]"/>
+    <div class="colon"></div>
+    <flip-item :total="5" :current="timeArr[2]"/>
+    <flip-item :total="9" :current="timeArr[3]"/>
+    <div class="colon"></div>
+    <flip-item :total="5" :current="timeArr[4]"/>
+    <flip-item :total="9" :current="timeArr[5]"/>
   </div>
 </template>
 
 <script>
 import FlipItem from './FlipItem.vue'
 import { getTimeArr } from './utils'
+
+console.log(getTimeArr())
 
 export default {
   components: {
@@ -22,7 +27,6 @@ export default {
     }
   },
   mounted() {
-    console.log(getTimeArr())
     this.startTimer()
   },
   beforeDestroy() {
@@ -32,8 +36,8 @@ export default {
     startTimer() {
       this.timer = setTimeout(() => {
         this.stopTimer()
-        const { current, total } = this
-        this.current = current > total - 1 ? 0 : current + 1
+        this.timeArr = getTimeArr()
+        console.log(this.timeArr)
         this.startTimer()
       }, 1000)
     },
@@ -48,5 +52,21 @@ export default {
 .clock-container {
   display: flex;
   align-items: center;
+}
+.colon {
+  height: 50px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+  }
 }
 </style>

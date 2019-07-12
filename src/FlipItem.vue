@@ -8,9 +8,11 @@
         :key="item"
       >
         <div class="up">
+          <div class="shadow"></div>
           <div class="inn">{{key}}</div>
         </div>
         <div class="down">
+          <div class="shadow"></div>
           <div class="inn">{{key}}</div>
         </div>
       </li>
@@ -32,13 +34,16 @@ export default {
   },
   data() {
     return {
-      before: -1,
-      isPlay: true
+      before: this.total === this.current ? -1 : this.total,
+      isPlay: false
     }
   },
   watch: {
     current(current, preCurrent) {
       this.before = preCurrent
+      if (!this.isPlay) {
+        this.isPlay = true
+      }
     }
   }
 }
@@ -70,6 +75,9 @@ $radius: 6px;
     height: 100%;
     perspective: 200px;
     transition: opacity 0.3s;
+    &.active {
+      z-index: 2;
+    }
     &:first-child {
       z-index: 2;
     }
@@ -168,6 +176,49 @@ $radius: 6px;
   }
   100% {
     z-index: 4;
+  }
+}
+
+.play {
+  .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  .before .up .shadow {
+    background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+    animation: show 0.5s linear both;
+  }
+  .active .up .shadow {
+    background: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 100%);
+    animation: hide 0.5s 0.3s linear both;
+  }
+  .before .down .shadow {
+    background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    animation: show 0.5s linear both;
+  }
+  .active .down .shadow {
+    background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    animation: hide 0.5s 0.3s linear both;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>

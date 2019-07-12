@@ -1,11 +1,11 @@
 {
   "name": "kuan-vue-flip-clock",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue 翻页时钟",
   "main": "lib/kuan-vue-flip-clock.min.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=production node build/dev",
-    "build:gh": "cross-env NODE_ENV=production node build/build",
+    "build:gh": "cross-env NODE_ENV=production node build/buildGh",
     "build:lib": "cross-env NODE_ENV=production node build/buildLib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
