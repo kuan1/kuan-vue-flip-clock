@@ -1,6 +1,6 @@
 {
   "name": "kuan-vue-flip-clock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue 翻页时钟",
   "main": "lib/kuan-vue-flip-clock.min.js",
   "scripts": {
