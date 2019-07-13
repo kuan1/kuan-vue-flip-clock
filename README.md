@@ -1,7 +1,6 @@
 # vue 翻页时钟
 
-[演示 DEMO](https://www.kuan1.top/kuan-vue-flip-clock/)  
-base on [ademilter](https://codepen.io/ademilter/pen/czIGo)
+[演示 DEMO](https://www.kuan1.top/kuan-vue-flip-clock/)
 
 # 安装
 
@@ -40,3 +39,7 @@ yarn add kuan-vue-flip-clock
   }
 </style>
 ```
+
+## 参考
+
+[codepen ademilter](https://codepen.io/ademilter/pen/czIGo)
